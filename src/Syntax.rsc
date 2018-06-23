@@ -42,7 +42,8 @@ syntax Declarations
 syntax Declaration = decl: Id id ":" Type tp;
 */
 
-syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* "}" ;
+
+syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* "}";
 
 syntax Attribute = Scope scope Id id ":" Type type;
 
@@ -50,7 +51,7 @@ syntax Parameter = Type type Id id;
 
 syntax Operation = Scope scope Id id "("{Parameter ","}* params "):" Type return;
 
-syntax Relation = "Relation(" Id id "," Multiplicity mult "," RelationName relation "," Multiplicity mult ")";
+syntax Relation = "Relation(" Id id "," Multiplicity mult "," RelationName relation "," Multiplicity mult "," Id id ")";
 
 syntax Type
    = natural:"Natural" 
