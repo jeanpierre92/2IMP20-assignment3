@@ -8,8 +8,13 @@ Operations:
 	+setName(String name): void;
 	+addBalance(Natural amount, String date): Boolean
 }
+Interface testInt {
+Operations:
+	+method1(): void;
+	-method2(String s): Natural
+}
 endClasses
 beginRelations
-	Relation(test, 1, association, 1, test);
-	Relation(test, 1, association, 1, test)
+	Association(test, 1, 1, test);
+	Association(test, 1, 1, test)
 endRelations

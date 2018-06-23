@@ -11,14 +11,14 @@ import Syntax;
 
 //  define the language name and extension
 
-private str Pico_NAME = "Pico";
-private str Pico_EXT = "pico";
+private str NAME = "UMLC";
+private str EXT = "umlc";
 
 //  Define the connection with the Pico parser
 Tree parser(str x, loc l) {
     return parse(#Program, x, l);
 }
 
-public void registerPico() {
-  registerLanguage(Pico_NAME, Pico_EXT, parser);
+public void register() {
+  registerLanguage(NAME, EXT, parser);
 }

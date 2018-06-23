@@ -13,12 +13,12 @@ lexical Natural = [0-9]+;
 lexical String = "\"" ![\"]*  "\"";
 lexical Boolean = ("true" | "false");
 lexical Scope = ("+" | "-" | "#" | "~");
-lexical Multiplicity = Natural | (Natural"-"Natural) | (Natural"-*") ;
-lexical RelationName = ("association" | "aggregation" | "composition" | "generalization");
+lexical RelationName = ("association" | "aggregation" | "composition" | "generalization" | "implementation" | "dependency");
 
 keyword Keywords = "beginClasses" | "endClasses" | 
                    "beginRelations" | "endRelations" | 
-                   "Class" | "Attributes" | "Operations" | 
+                   "Class" | "Interface" | 
+                   "Attributes" | "Operations" | 
                    "Attributes" | "Operations"
                    "natural" | "string" | "boolean" |
                    "Relation"
@@ -33,7 +33,7 @@ lexical WhitespaceAndComment
    ;
 
 start syntax Program 
-   = program: "beginClasses" Class* classes "endClasses" "beginRelations" {Relation ";"}* relations "endRelations" ;
+   = program: "beginClasses" (Class|Interface)* classes "endClasses" "beginRelations" {Relation ";"}* relations "endRelations" ;
 
 /*
 syntax Declarations 
@@ -43,15 +43,31 @@ syntax Declaration = decl: Id id ":" Type tp;
 */
 
 
-syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* "}";
+syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* operations "}";
+
+syntax Interface = "Interface" Id id "{" "Operations:" {Operation ";"}* operations "}";
 
 syntax Attribute = Scope scope Id id ":" Type type;
 
 syntax Parameter = Type type Id id;
 
-syntax Operation = Scope scope Id id "("{Parameter ","}* params "):" Type return;
+syntax Operation = Scope scope Id id "("{Parameter ","}* params ")" ":" Type return;
 
-syntax Relation = "Relation(" Id id "," Multiplicity mult "," RelationName relation "," Multiplicity mult "," Id id ")";
+syntax Mult = Natural n | (Natural n1 "-"Natural n2) | (Natural n"-*") ;
+
+syntax Assoc = "Association" "(" Id from "," Mult m1 "," Mult m2 "," Id to ")";
+
+syntax Aggr = "Aggregation" "(" Id from "," Mult m "," Id to ")";
+
+syntax Comp = "Composition" "(" Id from "," Mult m "," Id to ")";
+
+syntax Gene = "Generalization" "(" Id from "," Id to ")";
+
+syntax Impl = "Implementation" "(" Id from "," Id to ")";
+
+syntax Depe = "Dependency" "(" Id from "," Id to ")";
+
+syntax Relation =  (Assoc | Aggr | Comp | Gene | Impl);
 
 syntax Type
    = natural:"Natural" 
@@ -60,7 +76,7 @@ syntax Type
    | None : "void"
    ;
 
-/* Misschien later nog als we manipulations van UML diagrams willen doen (bijv "add method m1 to all children of class c1").
+/*
 
 syntax Statement 
    = asgStat: Id var ":="  Expression val 
