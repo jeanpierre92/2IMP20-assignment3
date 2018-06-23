@@ -8,5 +8,6 @@ Operations:
 }
 endClasses
 beginRelations
-	
+	Relation(test, 1, association, 1, test);
+	Relation(test, 1, association, 1, test)
 endRelations

@@ -61,7 +61,7 @@ syntax Attribute = Scope scope Id id ":" Type type;
 
 syntax Operation = Scope scope Id id "():" Type type;
 
-syntax Relation = "Relation(" Id id "," Multiplicity mult "," RelationName relation "," Multiplicity mult ")";
+syntax Relation = "Relation(" Id id "," Multiplicity mult "," RelationName relation "," Multiplicity mult "," Id id ")";
 
 /*
 Naturally, booleans are a separate type that can be declared, so another constructor is added
