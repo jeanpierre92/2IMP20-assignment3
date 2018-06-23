@@ -4,9 +4,9 @@ Attributes:
 	+bankId:Natural;
 	-bankName:String
 Operations:
-	+printBankData():String
+	
 }
 endClasses
 beginRelations
-Relation(Bank, 1-5, association, 1*, Customer)
+	
 endRelations
