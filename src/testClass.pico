@@ -4,7 +4,9 @@ Attributes:
 	+bankId:Natural;
 	-bankName:String
 Operations:
-	
+	+getName(): String;
+	+setName(String name): void;
+	+addBalance(Natural amount, String date): Boolean
 }
 endClasses
 beginRelations
