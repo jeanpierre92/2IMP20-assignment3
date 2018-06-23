@@ -55,7 +55,7 @@ syntax Declarations
 syntax Declaration = decl: Id id ":" Type tp;
 */
 
-syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* ;
+syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* "}";
 
 syntax Attribute = Scope scope Id id ":" Type type;
 
