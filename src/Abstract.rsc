@@ -17,7 +17,8 @@ public data DECL =
 // boolean Expressions are equal or not.
 
 public data EXP = 
-       id(PicoId name)
+	   gen(PicoId name1, PicoId name2)
+     | id(PicoId name)
      | natCon(int iVal)
      | strCon(str sVal)
      | boolCon(bool bVal)

@@ -1,0 +1,12 @@
+beginClasses
+Class testClass {
+		Attributes:
+			+money:Natural;
+			-testAtt:String
+		Operations:
+			+createMoney(String amount) : Natural
+	}
+endClasses
+beginRelations
+	Generalization(testClass, testClass)
+endRelations

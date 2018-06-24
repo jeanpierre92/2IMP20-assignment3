@@ -13,6 +13,15 @@ str required(TYPE t1, TYPE t2) = required(t1, getName(t2));
 
 // compile Expressions.
 
+// typecheck assignment3
+TENV checkExp(exp:gen(PicoId Id1, PicoId Id2), TYPE req, TENV env) {                              
+  if(!env.symbols[Id1]? || !env.symbols[Id2]?)
+     return addError(env, exp@location, "Undeclared variable <Id1>");
+  tpid = env.symbols[Id1];
+  return req == tpid ? env : addError(env, exp@location, required(req, tpid));
+}
+
+
 TENV checkExp(exp:natCon(int N), TYPE req, TENV env) =                              
   req == natural() ? env : addError(env, exp@location, required(req, "natural"));
 

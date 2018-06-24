@@ -33,7 +33,7 @@ lexical WhitespaceAndComment
    ;
 
 start syntax Program 
-   = program: "beginClasses" Classes* classes "endClasses" "beginRelations" {Relation ";"}* relations "endRelations" ;
+   = program: "beginClasses" Classes* classes "endClasses" "beginRelations" {Expression ";"}* relations "endRelations" ;
 
 /*
 syntax Declarations 
@@ -75,8 +75,12 @@ syntax Type
    | None : "void"
    ;
 
-/*
+syntax Statement = ;
+	
+syntax Expression = ass:Assoc | agg:Aggr | com:Comp | gen:Gene | imp:Impl | dep:Depe;
+	
 
+/*
 syntax Statement 
    = asgStat: Id var ":="  Expression val 
    | ifElseStat: "if" Expression cond "then" {Statement ";"}*  thenPart "else" {Statement ";"}* elsePart "fi"
