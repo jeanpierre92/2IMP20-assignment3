@@ -1,6 +1,6 @@
 /*
 Assignment 3 2IMP20.
-Authors: Maurits Ambags (0771400), Jeanpierre Balster ().
+Authors: Maurits Ambags (0771400), Jeanpierre Balster (0864027).
 GLT Group 36.
 */
 
@@ -14,12 +14,12 @@ lexical String = "\"" ![\"]*  "\"";
 lexical Boolean = ("true" | "false");
 lexical Scope = ("+" | "-" | "#" | "~");
 lexical RelationName = ("association" | "aggregation" | "composition" | "generalization" | "implementation" | "dependency");
+lexical ClassType = ("Class" | "Abstract" | "Interface");
 
 keyword Keywords = "beginClasses" | "endClasses" | 
                    "beginRelations" | "endRelations" | 
                    "Class" | "Interface" | 
-                   "Attributes" | "Operations" | 
-                   "Attributes" | "Operations"
+                   "Attributes" | "Operations" |
                    "natural" | "string" | "boolean" |
                    "Relation"
                    ;
@@ -33,7 +33,7 @@ lexical WhitespaceAndComment
    ;
 
 start syntax Program 
-   = program: "beginClasses" (Class|Interface)* classes "endClasses" "beginRelations" {Relation ";"}* relations "endRelations" ;
+   = program: "beginClasses" Classes* classes "endClasses" "beginRelations" {Relation ";"}* relations "endRelations" ;
 
 /*
 syntax Declarations 
@@ -43,17 +43,16 @@ syntax Declaration = decl: Id id ":" Type tp;
 */
 
 
-syntax Class = "Class" Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* operations "}";
-
-syntax Interface = "Interface" Id id "{" "Operations:" {Operation ";"}* operations "}";
+syntax Classes = ClassType classType Id id "{" "Attributes:" {Attribute ";"}* attributes "Operations:" {Operation ";"}* operations "}";
 
 syntax Attribute = Scope scope Id id ":" Type type;
 
-syntax Parameter = Type type Id id;
-
 syntax Operation = Scope scope Id id "("{Parameter ","}* params ")" ":" Type return;
 
-syntax Mult = Natural n | (Natural n1 "-"Natural n2) | (Natural n"-*") ;
+syntax Parameter = Type type Id id;
+
+
+syntax Relation =  (Assoc | Aggr | Comp | Gene | Impl | Depe);
 
 syntax Assoc = "Association" "(" Id from "," Mult m1 "," Mult m2 "," Id to ")";
 
@@ -67,7 +66,7 @@ syntax Impl = "Implementation" "(" Id from "," Id to ")";
 
 syntax Depe = "Dependency" "(" Id from "," Id to ")";
 
-syntax Relation =  (Assoc | Aggr | Comp | Gene | Impl);
+syntax Mult = Natural n | (Natural n1 "-" Natural n2) | (Natural n "-*") ;
 
 syntax Type
    = natural:"Natural" 

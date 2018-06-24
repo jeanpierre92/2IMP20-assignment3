@@ -1,0 +1,34 @@
+beginClasses
+
+	Class testClass {
+		Attributes:
+			+money:Natural;
+			-testAtt:String
+		Operations:
+			+createMoney(String amount) : Natural
+	}
+	
+	Abstract testAbstract {
+		Attributes:
+			+test:String
+		Operations:
+			+testAbstractOpe(Natural nat, String str) : void
+	}
+	
+	Interface testInterface {
+		Attributes:
+			+test:String
+		Operations:
+			+testAbstractOpe(Natural nat, String str) : void
+	}
+
+endClasses
+
+beginRelations
+	Association(test, 1, 1, test);
+	Aggregation(test, 1, test);
+	Composition(test, 1, test);
+	Generalization(test, test);
+	Implementation(test, test);
+	Dependency(test, test)
+endRelations

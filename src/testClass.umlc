@@ -1,19 +1,31 @@
 beginClasses
-Class testclass {
-Attributes:
-	+bankId:Natural;
-	-bankName:String
-Operations:
-	+getName(): String;
-	+setName(String name): void;
-	+addBalance(Natural amount, String date): Boolean
-}
-Interface testInt {
-Operations:
-	+method1(): void;
-	-method2(String s): Natural
-}
+	Class testclass {
+	Attributes:
+		+bankId: Natural;
+		-bankName: String
+	Operations:
+		+getName(): String;
+		+setName(String name): void;
+		+addBalance(Natural amount, String date): Boolean
+	}
+	
+	Abstract testClass2 {
+	Attributes:
+		+bankId: Natural;
+		-bankName: String
+	Operations:
+		+getName(): String;
+		+setName(String name): void;
+		+addBalance(Natural amount, String date): Boolean
+	}
+	
+	Interface testInt {
+	Operations:
+		+method1(): void;
+		-method2(String s): Natural
+	}
 endClasses
+
 beginRelations
 	Association(test, 1, 1, test);
 	Association(test, 1, 1, test)
