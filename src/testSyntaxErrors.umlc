@@ -1,0 +1,10 @@
+beginClasses
+	Class testClass {
+		Attributes:
+			money: Natural;
+		Operations:
+			+createMoney(String amount) : Natural
+	}
+endClasses
+beginRelations
+endRelations

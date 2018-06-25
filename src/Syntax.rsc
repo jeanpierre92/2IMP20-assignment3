@@ -78,34 +78,6 @@ syntax Type
 syntax Statement = ;
 	
 syntax Expression = ass:Assoc | agg:Aggr | com:Comp | gen:Gene | imp:Impl | dep:Depe;
-	
-
-/*
-syntax Statement 
-   = asgStat: Id var ":="  Expression val 
-   | ifElseStat: "if" Expression cond "then" {Statement ";"}*  thenPart "else" {Statement ";"}* elsePart "fi"
-   | whileStat: "while" Expression cond "do" {Statement ";"}* body "od"
-   | forStat: "for" "(" {Statement ";"}* init ";" Expression guard ";" {Statement ";"}* maint ")" 
-   	 "do" {Statement ";"}* body "od"
-  ;  
-
-syntax Expression 
-   = id: Id name
-   | strCon: String string
-   | natCon: Natural natcon
-   | boolCon: Boolean bool
-   | bracket "(" Expression e ")"
-   > left b_not: "not" Expression e
-   > left b_and: Expression lhs "and" Expression rhs
-   > left b_or: Expression lhs "or" Expression rhs
-   > left conc: Expression lhs "||" Expression rhs
-   > left ( add: Expression lhs "+" Expression rhs
-          | sub: Expression lhs "-" Expression rhs
-          )
-   > left 	( neq: Expression lhs "!=" Expression rhs
-   			| eq: Expression lhs "==" Expression rhs
-   			)
-  ;*/
 
 public start[Program] program(str s) {
   return parse(#start[Program], s);
